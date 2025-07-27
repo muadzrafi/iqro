@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Santri</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <!-- Back Button -->
+        <a href="#" class="inline-flex items-center mb-4 text-sm font-medium text-indigo-600 hover:text-indigo-500">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Kembali
+        </a>
+
+        <!-- Profile Header -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-4">
+            <div class="flex items-center">
+                <div class="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center">
+                    <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                </div>
+                <div class="ml-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Ahmad Santri</h1>
+                    <p class="text-sm text-gray-500">ID: STR2024001</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail Information -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Personal Information -->
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">Informasi Pribadi</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Nama Lengkap</label>
+                        <p class="mt-1 text-sm text-gray-900">Ahmad Santri bin Abdullah</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Tempat, Tanggal Lahir</label>
+                        <p class="mt-1 text-sm text-gray-900">Jakarta, 15 Januari 2000</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Alamat</label>
+                        <p class="mt-1 text-sm text-gray-900">Jl. Pesantren No. 123, RT 001/RW 002, Kelurahan Sejahtera, Kecamatan Bahagia</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">No. Telepon</label>
+                        <p class="mt-1 text-sm text-gray-900">+62 812-3456-7890</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Information -->
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">Informasi Akademik</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Periode Masuk</label>
+                        <p class="mt-1 text-sm text-gray-900">2024</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Program</label>
+                        <p class="mt-1 text-sm text-gray-900">Tahfidz Quran</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Tingkat</label>
+                        <p class="mt-1 text-sm text-gray-900">Tingkat 1</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Pembimbing</label>
+                        <p class="mt-1 text-sm text-gray-900">Ustadz Muhammad</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parent Information -->
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">Informasi Orang Tua/Wali</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Nama Ayah</label>
+                        <p class="mt-1 text-sm text-gray-900">Abdullah</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Nama Ibu</label>
+                        <p class="mt-1 text-sm text-gray-900">Aminah</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">No. Telepon Orang Tua</label>
+                        <p class="mt-1 text-sm text-gray-900">+62 812-9876-5432</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Pekerjaan Orang Tua</label>
+                        <p class="mt-1 text-sm text-gray-900">Wiraswasta</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievement Information -->
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">Prestasi & Catatan</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Hafalan Al-Quran</label>
+                        <p class="mt-1 text-sm text-gray-900">5 Juz</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Prestasi</label>
+                        <ul class="mt-1 text-sm text-gray-900 list-disc list-inside">
+                            <li>Juara 1 Musabaqah Hifdzil Quran Tingkat Kota (2023)</li>
+                            <li>Juara 2 Lomba Kaligrafi Tingkat Provinsi (2024)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Catatan Khusus</label>
+                        <p class="mt-1 text-sm text-gray-900">Memiliki bakat dalam bidang kaligrafi dan tilawah</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-6 flex justify-end space-x-4">
+            <button class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Edit Data
+            </button>
+            <button class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Cetak Data
+            </button>
+        </div>
+    </div>
+</body>
+</html>
