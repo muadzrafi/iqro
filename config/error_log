@@ -1,0 +1,56 @@
+[18-Jun-2024 10:03:28 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function app_path() in /home/ptqg9871/public_html/config/filament-spatie-roles-permissions.php:107
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/filament-spatie-roles-permissions.php on line 107
+[18-Jun-2024 11:28:46 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/ptqg9871/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/services.php on line 18
+[18-Jun-2024 11:52:56 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/ptqg9871/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/queue.php on line 16
+[18-Jun-2024 12:07:13 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/ptqg9871/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/mail.php on line 16
+[18-Jun-2024 14:02:48 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/ptqg9871/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/filesystems.php on line 16
+[18-Jun-2024 14:19:47 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/ptqg9871/public_html/config/logging.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/logging.php on line 21
+[18-Jun-2024 15:57:20 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/ptqg9871/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/database.php on line 18
+[18-Jun-2024 16:14:54 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/ptqg9871/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/broadcasting.php on line 18
+[18-Jun-2024 18:37:26 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/ptqg9871/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/cache.php on line 18
+[18-Jun-2024 20:51:42 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/ptqg9871/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/session.php on line 21
+[18-Jun-2024 23:21:13 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/ptqg9871/public_html/config/app.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/app.php on line 19
+[19-Jun-2024 00:20:03 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/ptqg9871/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/view.php on line 17
+[19-Jun-2024 01:08:24 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/ptqg9871/public_html/config/sanctum.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/sanctum.php on line 18
+[19-Jun-2024 01:47:43 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/ptqg9871/public_html/config/hashing.php:32
+Stack trace:
+#0 {main}
+  thrown in /home/ptqg9871/public_html/config/hashing.php on line 32

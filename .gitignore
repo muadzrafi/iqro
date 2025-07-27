@@ -1,0 +1,17 @@
+/vendor
+/node_modules
+/public/storage
+/storage/*
+!/storage/app
+!/storage/app/public
+.env
+*.zip
+*.rar
+*.mp4
+*.mov
+*.psd
+*.log
+.DS_Store
+*.bak
+.idea
+.vscode
