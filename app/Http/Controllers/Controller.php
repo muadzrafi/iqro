@@ -23,10 +23,19 @@ class Controller extends BaseController
             $awalBulan = date('Y-m-01');
             $akhirBulan = date('Y-m-t');
         }
-    
+        
+        $jenisKelaminList = Santri::select('jenis_kelamin')
+                    ->distinct()
+                    ->whereNotNull('jenis_kelamin')
+                    ->pluck('jenis_kelamin')
+                    ->toArray();
+
         $reports = Santri::where('status', 'active')
             ->when(request()->input('nama'), function ($query, $nama) {
                 $query->where('nama', 'like', "%$nama%");
+            })
+            ->when(request()->input('jenis_kelamin'), function ($query, $jk) {
+                $query->where('jenis_kelamin', $jk);
             })
             ->get()
             ->map(function ($query) use ($awalBulan, $akhirBulan) {
@@ -62,14 +71,21 @@ class Controller extends BaseController
                 $status = $reportAkhirBulanStatus?->status ?? null;
                 $statusValid = ['ziyadah', 'persiapan ujian juz', 'persiapan tasmi', 'sanad'];
                 $query->statusAkhirBulan = in_array($status, $statusValid) ? $status : 'ziyadah';
-    
+                
+                
+
                 return $query;
             })
+            ->sortBy(function ($santri) {
+                return intval(preg_replace('/[^0-9]/', '', $santri->kelas));
+            })
+            ->values()
             ->toArray();
     
         return view('report-list', [
             'santris' => $reports,
             'bulan' => $bulanInput, // kirim ke view untuk select bulan
+            'jenisKelaminList' => $jenisKelaminList,
         ]);
     }
 }

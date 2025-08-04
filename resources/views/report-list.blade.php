@@ -1255,7 +1255,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </button>
         </div>
         <div>
-          <label for="bulan" class="font-semibold text-green-700">Pilih Bulan:</label>
+          <label for="bulan" class="font-semibold text-green-700">Pilih Bulan :</label>
           <select name="bulan" id="bulan"
             onchange="this.form.submit()"
             class="bg-yellow-100 border border-yellow-400 text-green-800 font-semibold rounded px-3 py-2 shadow-sm hover:bg-yellow-200 transition">
@@ -1273,6 +1273,19 @@ document.addEventListener('DOMContentLoaded', function() {
                   {{ $label }}
                 </option>
             @endfor
+          </select>
+        </div>
+        <div>
+          <label for="jenis_kelamin" class="font-semibold text-green-700">Jenis Kelamin :</label>
+          <select name="jenis_kelamin" id="jenis_kelamin"
+            onchange="this.form.submit()"
+            class="bg-yellow-100 border border-yellow-400 text-green-800 font-semibold rounded px-3 py-2 shadow-sm hover:bg-yellow-200 transition">
+            <option value="">Semua</option>
+            @foreach ($jenisKelaminList as $jk)
+              <option value="{{ $jk }}" {{ request('jenis_kelamin') == $jk ? 'selected' : '' }}>
+                {{ $jk }}
+              </option>
+            @endforeach
           </select>
         </div>
       </form>
