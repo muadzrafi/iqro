@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -121,7 +122,7 @@
   <div class="sigma-navbar-container">
     <!-- Logo Brand -->
     <div class="sigma-navbar-brand">
-      <a href="index.html" class="sigma-brand-logo">
+      <a href="/" class="sigma-brand-logo">
         <img src="/logoptq.png" alt="Logo PTQ IQRO'" loading="lazy">
         <span>PTQ IQRO'</span>
       </a>
@@ -140,7 +141,7 @@
           <a href="/blog" class="sigma-menu-link">Berita</a>
         </li>
         <li class="sigma-menu-item">
-          <a href="/login-gate" class="sigma-menu-link">Laporan</a>
+          <a href="/report" class="sigma-menu-link">Laporan</a>
         </li>
         
         <!-- Profil Dropdown -->
@@ -2299,4 +2300,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-

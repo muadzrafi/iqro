@@ -446,7 +446,7 @@
   <div class="sigma-navbar-container">
     <!-- Logo Brand -->
     <div class="sigma-navbar-brand">
-      <a href="/" class="sigma-brand-logo">
+      <a href="index.html" class="sigma-brand-logo">
         <img src="/logoptq.png" alt="Logo PTQ IQRO'" loading="lazy">
         <span>PTQ IQRO'</span>
       </a>
@@ -465,7 +465,7 @@
           <a href="/blog" class="sigma-menu-link">Berita</a>
         </li>
         <li class="sigma-menu-item active">
-          <a href="/report" class="sigma-menu-link">Laporan</a>
+          <a href="/login-gate" class="sigma-menu-link">Laporan</a>
         </li>
         
         <!-- Profil Dropdown -->
@@ -1233,34 +1233,133 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 
-
-
     <!-- Filter Section -->
     <div class="bg-white backdrop-blur-lg border border-white/30 rounded-xl shadow-lg p-6 mb-6">
-    <form method="GET" action="/report" class="grid md:grid-cols-1 gap-6">
-      
-      {{-- Label --}}
-      <div>
-        <h2 class="text-lg font-bold text-green-700 mb-2">Pilih Jenis Laporan Bulanan</h2>
-        <p class="text-sm text-gray-600 mb-4">Silakan pilih laporan berdasarkan gender santri.</p>
-        
-        {{-- Tombol Link --}}
-        <div class="grid sm:grid-cols-2 gap-4">
-          <a href="{{ route('login-gate', ['jenis' => 'ikhwan']) }}"
-              class="block text-center bg-green-200 hover:bg-green-300 text-green-900 font-semibold py-3 px-4 rounded-lg shadow-md transition duration-200 ease-in-out">
-              📘 Laporan Ikhwan
-          </a>
-          <a href="{{ route('login-gate', ['jenis' => 'akhwat']) }}"
-              class="block text-center bg-pink-200 hover:bg-pink-300 text-pink-900 font-semibold py-3 px-4 rounded-lg shadow-md transition duration-200 ease-in-out">
-              📕 Laporan Akhwat
-          </a>
-      </div>
-      </div>
 
-    </form>
-  </div>
+        {{-- Tombol Kembali --}}
+        <div class="mb-6">
+            <a href="{{ url('/report') }}"
+            class="inline-block text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-800 font-semibold py-2 px-4 rounded-lg shadow transition duration-200 hover:bg-white hover:text-green-800 border border-green-300">
+                ← Kembali ke Menu Laporan
+            </a>
+        </div>
+
+        {{-- Form Filter --}}
+        <form method="GET" action="{{ url()->current() }}" class="grid md:grid-cols-3 gap-4 items-end">
+            
+            {{-- Input Nama --}}
+            <div>
+                <label for="nama" class="block mb-1 font-semibold text-green-700">Nama Santri</label>
+                <div class="relative">
+                    <input
+                        type="text"
+                        id="nama"
+                        name="nama"
+                        placeholder="Cari nama santri..."
+                        value="{{ request('nama') }}"
+                        class="w-full pl-10 pr-3 py-2 border rounded-lg shadow-sm bg-white/80 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                    >
+                    <div class="absolute left-3 top-2.5 text-gray-500">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Tombol Cari --}}
+            <div>
+                <label class="block mb-1 opacity-0 select-none">Cari</label>
+                <button
+                    type="submit"
+                    class="w-full bg-yellow-400 hover:bg-yellow-300 text-green-900 font-semibold py-2 px-4 rounded-lg shadow-md transition hover:-translate-y-1 hover:shadow-xl"
+                >
+                    Cari Data
+                </button>
+            </div>
+
+            {{-- Pilih Bulan --}}
+            <div>
+                <label for="bulan" class="block mb-1 font-semibold text-green-700">Pilih Bulan</label>
+                <select
+                    name="bulan"
+                    id="bulan"
+                    onchange="this.form.submit()"
+                    class="w-full bg-yellow-100 border border-yellow-400 text-green-800 font-semibold rounded px-3 py-2 shadow-sm hover:bg-yellow-200 transition"
+                >
+                    @php
+                        use Carbon\Carbon;
+                        $now = Carbon::now();
+                    @endphp
+                    @for ($i = 0; $i < 2; $i++)
+                        @php
+                            $bulan = $now->copy()->subMonths($i);
+                            $value = $bulan->format('Y-m');
+                            $label = $bulan->translatedFormat('F Y');
+                        @endphp
+                        <option value="{{ $value }}" {{ request('bulan', date('Y-m')) == $value ? 'selected' : '' }}>
+                            {{ $label }}
+                        </option>
+                    @endfor
+                </select>
+            </div>
+        </form>
+    </div>
 
 
+    <!-- Table Section -->
+    <div class="bg-white backdrop-blur-md border border-white/20 rounded-xl shadow-xl overflow-hidden">
+    <div class="bg-green-600/90 px-6 py-4">
+        <h2 class="text-lg font-bold text-white">Laporan Hafalan Bulanan - Santri Ikhwan</h2>
+    </div>
+
+    <div class="overflow-x-auto md:overflow-visible">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-green-700 text-white sticky top-0 z-10 backdrop-blur-md bg-green-700/90">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">No.</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Nama</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Hafalan Bulan Ini</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Halaman</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Keterangan</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white">
+                @php($no = 1)
+                @foreach($santris as $santri)
+                    <tr class="" data-aos="fade-up">
+                        <td class="px-6 py-4 text-sm text-gray-700 bg-white">{{ $no }}</td>
+                        <td class="px-6 py-4 bg-white">
+                            <div class="flex items-center space-x-3">
+                                <img src="{{ empty($santri['photo']) ? asset('icon2.png') : asset('storage/' . $santri['photo']) }}"
+                                    alt="Photo" class="h-10 w-10 rounded-full shadow-md ring-1 ring-green-600/40">
+                                <div>
+                                    <div class="text-sm font-semibold text-gray-900">{{ $santri['nama'] }}</div>
+                                    <div class="text-xs text-gray-500">Kelas: {{ $santri['kelas'] }}</div>
+                                </div>
+                            </div>
+                        </td>
+
+                        @if(empty($santri['ziyadahHalamanAwal']) || empty($santri['ziyadahHalamanTerakhir']))
+                            <td colspan="3" class="px-6 py-4 text-sm text-red-600 italic text-center">
+                                Belum ada laporan di bulan ini
+                            </td>
+                        @else
+                            <td class="px-6 py-4 text-sm text-gray-700 bg-white">
+                                {{ $santri['totalZiyadah'] }} Halaman
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-700 bg-white">
+                                {{ $santri['ziyadahHalamanAwal'] }} - {{ $santri['ziyadahHalamanTerakhir'] }}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-700 bg-white">
+                                {{ $santri['statusAkhirBulan'] }}
+                            </td>
+                        @endif
+                    </tr>
+                    @php($no++)
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 
     <!-- Santri Turbo Kick: Ultimate Scrollback Attack -->
 <div class="back-to-top-santri" id="backToTopSantri">
@@ -1463,4 +1562,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-

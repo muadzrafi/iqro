@@ -1,229 +1,88 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\PostController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+// 🔁 Redirect home ke root
+Route::redirect('/home', '/');
 
+// 🏠 Halaman Utama
+Route::get('/', [PostController::class, 'beranda']);
 
+// 👤 Profile Pages
+Route::view('/profile', 'profile-ptq')->name('profile.ptq');
+Route::view('/jurnalis', 'profile-jurnalis')->name('profile.jurnalis');
+Route::view('/ekskul', 'profile-ekskul')->name('profile.ekskul');
+Route::view('/perpus', 'profile-perpus')->name('profile.perpus');
+Route::view('/dkm', 'profile-dkm')->name('profile.dkm');
+Route::view('/isqi', 'profile-isqi')->name('profile.isqi');
+Route::view('/coding', 'profile-coding')->name('profile.coding');
+Route::view('/prodemas', 'profile-prodemas')->name('profile.prodemas');
+Route::view('/keolahragaan', 'profile-keolahragaan')->name('profile.keolahragaan');
+Route::view('/mpk', 'profile-mpk')->name('profile.mpk');
+Route::view('/pengasuhan', 'profile-pengasuhan')->name('profile.pengasuhan');
+Route::view('/tahfizh', 'profile-tahfizh')->name('profile.tahfizh');
+Route::view('/nontahfizh', 'profile-nontahfizh')->name('profile.nontahfizh');
 
-Route::get('/home', function () {
-    return redirect('/');
-});
+// 📄 PPDB Page
+Route::view('/ppdb', 'ppdb')->name('ppdb');
 
-Route::get('/', function () {
-    return view('home');
-});
+// 📝 PPDB
+Route::view('/ppdb', 'ppdb')->name('ppdb');
 
-Route::get('/', [App\Http\Controllers\PostController::class,'beranda']);
+// 📊 Report Menu (Bebas diakses)
+Route::get('/report', function () {
+    return view('report-list'); // langsung ke daftar laporan
+})->name('report.list');
 
-Route::get('/blog',[PostController::class , 'index'])->name('blog');
-
-Route::get('/profile', function () {
-    return redirect('/profile-ptq');
-});
-
-Route::get('/profile', function () {
-    return view('profile-ptq');
-});
-
-Route::get('/jurnalis', function () {
-    return redirect('/profile-jurnalis');
-});
-
-Route::get('/jurnalis', function () {
-    return view('profile-jurnalis');
-});
-
-// Route::get('/blog1', function () {
-//     return redirect('/blog1');
-// });
-
-// Route::get('/blog1', function () {
-//     return view('blog');
-// });
-
-// Route::get('/blogread', function () {
-//     return redirect('/blogread');
-// });
-
-// Route::get('/blogread', function () {
-//     return view('blog-read');
-// });
-
-Route::get('/ekskul', function () {
-    return redirect('/profile-ekskul');
-});
-
-Route::get('/ekskul', function () {
-    return view('profile-ekskul');
-});
-
-Route::get('/perpus', function () {
-    return redirect('/profile-perpus');
-});
-
-Route::get('/perpus', function () {
-    return view('profile-perpus');
-});
-
-Route::get('/dkm', function () {
-    return redirect('/profile-dkm');
-});
-
-Route::get('/dkm', function () {
-    return view('profile-dkm');
-});
-
-Route::get('/isqi', function () {
-    return redirect('/profile-isqi');
-});
-
-Route::get('/isqi', function () {
-    return view('profile-isqi');
-});
-
-Route::get('/coding', function () {
-    return redirect('/profile-coding');
-});
-
-Route::get('/coding', function () {
-    return view('profile-coding');
-});
-
-Route::get('/prodemas', function () {
-    return redirect('/prodemas');
-});
-
-Route::get('/prodemas', function () {
-    return view('profile-prodemas');
-});
-
-Route::get('/keolahragaan', function () {
-    return redirect('/keolahragaan');
-});
-
-Route::get('/keolahragaan', function () {
-    return view('profile-keolahragaan');
-});
-
-Route::get('/mpk', function () {
-    return redirect('/mpk');
-});
-
-Route::get('/mpk', function () {
-    return view('profile-mpk');
-});
-
-Route::get('/pengasuhan', function () {
-    return redirect('/pengasuhan');
-});
-
-Route::get('/pengasuhan', function () {
-    return view('profile-pengasuhan');
-});
-
-Route::get('/tahfizh', function () {
-    return redirect('/tahfizh');
-});
-
-Route::get('/tahfizh', function () {
-    return view('profile-tahfizh');
-});
-
-Route::get('/nontahfizh', function () {
-    return redirect('/nontahfizh');
-});
-
-Route::get('/nontahfizh', function () {
-    return view('profile-nontahfizh');
-});
-
-// Route::get('/blog', function () {
-//     return redirect('/blog');
-// });
-
-// Route::get('/blog', function () {
-//     return view('maintenance');
-// });
-
-Route::get('/ppdb', function () {
-    return redirect('/ppdb');
-});
-
-Route::get('/ppdb', function () {
-    return view('ppdb');
-});
-
-
-Route::get('/login', function () {
-    return redirect('admin');
-});
-
-
-
-// Route::get('/admin', function () {
-//      return view('admin');
-// });
-
-Route::get('/login-gate', function () {
-    return view('login-gate');
+// 🔐 Login Gate (per jenis kelamin)
+Route::get('/login-gate/{jenis}', function ($jenis) {
+    return view('login-gate', ['jenis' => $jenis]);
 })->name('login-gate');
 
-Route::post('/check-passcode', function (\Illuminate\Http\Request $request) {
+// 🛂 Cek Passcode berdasarkan jenis
+Route::post('/check-passcode', function (Illuminate\Http\Request $request) {
+    $jenis = $request->input('jenis');
     $passcode = $request->input('passcode');
-    $correct = 'iqro2025'; // Ganti dengan passcode rahasia kamu
 
-    if ($passcode === $correct) {
-        session(['access_granted' => true]);
-        return redirect()->to('/report');
+    $correctCodes = [
+        'ikhwan' => 'ikhwan2025',
+        'akhwat' => 'akhwat2025',
+    ];
+
+    if (isset($correctCodes[$jenis]) && $passcode === $correctCodes[$jenis]) {
+        session(['access_granted_' . $jenis => true]);
+        return redirect()->route('report.' . $jenis);
     }
 
-    return redirect()->route('login-gate')->with('error', 'Passcode salah!');
-})->name('check-passcode');
+    return redirect()->route('login-gate', ['jenis' => $jenis])
+                     ->with('error', 'Passcode salah!');
+    })->name('check-passcode');
 
-Route::get('/report', function () {
-    if (!session('access_granted')) {
-        return redirect()->route('login-gate')->with('error', 'Silakan masukkan passcode.');
+// 📄 Laporan Ikhwan (proteksi passcode)
+Route::get('/report/ikhwan', function () {
+    if (!session('access_granted_ikhwan')) {
+        return redirect()->route('login-gate', ['jenis' => 'ikhwan'])
+                         ->with('error', 'Silakan masukkan passcode.');
     }
+    return app(Controller::class)->LaporanIkhwan();
+})->name('report.ikhwan');
 
-    return view('report-list'); // tampilan tujuan
-});
+// 📄 Laporan Akhwat (proteksi passcode)
+Route::get('/report/akhwat', function () {
+    if (!session('access_granted_akhwat')) {
+        return redirect()->route('login-gate', ['jenis' => 'akhwat'])
+                         ->with('error', 'Silakan masukkan passcode.');
+    }
+    return app(Controller::class)->LaporanAkhwat();
+})->name('report.akhwat');
 
-Route::get('/report', [App\Http\Controllers\Controller::class,'LaporanBulanan']);
+// (Optional) Detail laporan
+Route::view('/report/id', 'report-detail')->name('report.detail');
 
-Route::get('/report/id', function(){
-    return view('report-detail');
-    
-Route::get('/inputblog', function () {
-    return redirect('inputblog');
-    
-Route::get('/inputblog', function () {
-    return redirect('inputblog');
-    
-Route::get('/inputblog', function () {
-    return view('inputblog');
-    
-Route::get('/profile', function () {
-    return redirect('/profile-ptq');
-});
-
-Route::get('/profile', function () {
-    return view('profile-ptq');
-});
-   
-});
-});
-});
-});
-
-Route::get('/{slug}', [PostController::class, 'baca'])->name('baca');
+// 📝 Blog
+Route::get('/blog', [PostController::class, 'index'])->name('blog');
+Route::view('/inputblog', 'inputblog')->name('inputblog');
+Route::get('/{slug}', [PostController::class, 'baca'])->name('baca'); // slug blog

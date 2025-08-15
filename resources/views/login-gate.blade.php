@@ -392,29 +392,36 @@
   <!-- Form Card -->
   <div class="gate-container">
     <div class="gate-wrapper" id="gateWrapper">
-      <img src="{{ asset('logoptq.png') }}" alt="Logo PTQ IQRO'" class="gate-logo" />
-      <h2>Akses Data Hafalan</h2>
-      <p>Masukkan passcode yang telah diberikan oleh admin PTQ IQRO' untuk mengakses sistem</p>
+        <img src="{{ asset('logoptq.png') }}" alt="Logo PTQ IQRO'" class="gate-logo" />
+        <h2>Akses Data Hafalan</h2>
+        <p>Masukkan passcode yang telah diberikan oleh admin PTQ IQRO' untuk mengakses sistem</p>
 
-      <form id="gateForm" method="POST" action="{{ route('check-passcode') }}">
-        @csrf
-        <div class="gate-input-group">
-          <input type="password" name="passcode" placeholder="Masukkan Passcode" class="gate-input" required />
-          <i class="fas fa-lock gate-input-icon"></i>
+        <form id="gateForm" method="POST" action="{{ route('check-passcode') }}">
+            @csrf
+
+            {{-- Simpan jenis laporan (ikhwan/akhwat) --}}
+            <input type="hidden" name="jenis" value="{{ request('jenis') }}">
+
+            <div class="gate-input-group">
+                <input type="password" name="passcode" placeholder="Masukkan Passcode" class="gate-input" required />
+                <i class="fas fa-lock gate-input-icon"></i>
+            </div>
+
+            <button type="submit" class="gate-btn">
+                <span class="btn-text">Masuk</span>
+            </button>
+
+            @if(session('error'))
+                <div class="gate-error">{{ session('error') }}</div>
+            @endif
+        </form>
+
+        <div class="gate-footer">
+            Butuh bantuan? <a href="https://wa.me/6285711212732" target="_blank">Hubungi Admin</a>
         </div>
-        <button type="submit" class="gate-btn">
-          <span class="btn-text">Masuk</span>
-        </button>
-        @if(session('error'))
-          <div class="gate-error">{{ session('error') }}</div>
-        @endif
-      </form>
-
-      <div class="gate-footer">
-        Butuh bantuan? <a href="https://wa.me/6285711212732" target="_blank">Hubungi Admin</a>
-      </div>
     </div>
-  </div>
+</div>
+
 
   <!-- Bismillah Audio -->
   <audio id="bismillahAudio" src="{{ asset('audio/bismillah.mp3') }}"></audio>
